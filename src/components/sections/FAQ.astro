@@ -1,0 +1,125 @@
+---
+import { type Locale, getLocalizedPath } from '@/lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    label: 'FAQ', title: 'Preguntas frecuentes', subtitle: 'Respuestas a las dudas más comunes sobre Passport Platform.',
+    categories: [
+      {
+        name: 'General',
+        faqs: [
+          { q: '¿Qué es un pasaporte digital?', a: 'Es un registro digital único que documenta toda la historia de un activo, lote o servicio.' },
+          { q: '¿Qué diferencia a Passport Platform de Excel?', a: 'Firma criptográfica Ed25519 imposible de falsificar, funcionalidad offline-first, y audit bundle verificable.' },
+          { q: '¿Necesito conocimientos técnicos?', a: 'No. La app es intuitiva y los templates vienen pre-configurados por industria.' }
+        ]
+      },
+      {
+        name: 'Seguridad',
+        faqs: [
+          { q: '¿Cómo funciona la firma digital?', a: 'Usamos Ed25519. Cada usuario tiene un keypair único. Cuando firma un evento, es criptográficamente imposible de falsificar.' },
+          { q: '¿Los datos están encriptados?', a: 'Sí. TLS 1.3 en tránsito, AES-256 en reposo. Archivos en buckets encriptados por organización.' }
+        ]
+      },
+      {
+        name: 'Implementación',
+        faqs: [
+          { q: '¿Cuánto tiempo toma implementar?', a: 'Típicamente 2-4 semanas. Configuración, piloto, y escalamiento.' },
+          { q: '¿Funciona sin internet?', a: 'Sí, es offline-first. La app almacena eventos localmente y sincroniza automáticamente cuando hay conexión.' }
+        ]
+      }
+    ]
+  },
+  en: {
+    label: 'FAQ', title: 'Frequently asked questions', subtitle: 'Answers to the most common questions about Passport Platform.',
+    categories: [
+      {
+        name: 'General',
+        faqs: [
+          { q: 'What is a digital passport?', a: 'A unique digital record that documents the entire history of an asset, batch or service.' },
+          { q: 'What differentiates Passport Platform from Excel?', a: 'Ed25519 cryptographic signature impossible to forge, offline-first functionality, and verifiable audit bundle.' },
+          { q: 'Do I need technical knowledge?', a: 'No. The app is intuitive and templates come pre-configured by industry.' }
+        ]
+      },
+      {
+        name: 'Security',
+        faqs: [
+          { q: 'How does the digital signature work?', a: 'We use Ed25519. Each user has a unique keypair. When they sign an event, it is cryptographically impossible to forge.' },
+          { q: 'Is the data encrypted?', a: 'Yes. TLS 1.3 in transit, AES-256 at rest. Files in encrypted buckets per organization.' }
+        ]
+      },
+      {
+        name: 'Implementation',
+        faqs: [
+          { q: 'How long does implementation take?', a: 'Typically 2-4 weeks. Configuration, pilot, and scaling.' },
+          { q: 'Does it work without internet?', a: 'Yes, it is offline-first. The app stores events locally and syncs automatically when connected.' }
+        ]
+      }
+    ]
+  },
+  pt: {
+    label: 'FAQ', title: 'Perguntas frequentes', subtitle: 'Respostas às dúvidas mais comuns sobre o Passport Platform.',
+    categories: [
+      {
+        name: 'Geral',
+        faqs: [
+          { q: 'O que é um passaporte digital?', a: 'Um registro digital único que documenta toda a história de um ativo, lote ou serviço.' },
+          { q: 'O que diferencia o Passport Platform do Excel?', a: 'Assinatura criptográfica Ed25519 impossível de falsificar, funcionalidade offline-first e audit bundle verificável.' },
+          { q: 'Preciso de conhecimentos técnicos?', a: 'Não. O app é intuitivo e os templates vêm pré-configurados por indústria.' }
+        ]
+      },
+      {
+        name: 'Segurança',
+        faqs: [
+          { q: 'Como funciona a assinatura digital?', a: 'Usamos Ed25519. Cada usuário tem um keypair único. Quando assina um evento, é criptograficamente impossível de falsificar.' },
+          { q: 'Os dados estão criptografados?', a: 'Sim. TLS 1.3 em trânsito, AES-256 em repouso. Arquivos em buckets criptografados por organização.' }
+        ]
+      },
+      {
+        name: 'Implementação',
+        faqs: [
+          { q: 'Quanto tempo leva a implementação?', a: 'Tipicamente 2-4 semanas. Configuração, piloto e escalamento.' },
+          { q: 'Funciona sem internet?', a: 'Sim, é offline-first. O app armazena eventos localmente e sincroniza automaticamente quando há conexão.' }
+        ]
+      }
+    ]
+  }
+};
+const t = content[locale];
+---
+
+<section class="section bg-white" id="faq">
+  <div class="container-custom">
+    <div class="section-header">
+      <span class="badge-primary mb-4">{t.label}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-subtitle">{t.subtitle}</p>
+    </div>
+    
+    <div class="max-w-4xl mx-auto">
+      {t.categories.map((category, catIndex) => (
+        <div class="mb-12 reveal" style={`animation-delay: ${catIndex * 100}ms`}>
+          <h3 class="text-lg font-bold text-brand-primary mb-6 flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center text-sm">{catIndex + 1}</span>
+            {category.name}
+          </h3>
+          <div class="space-y-4">
+            {category.faqs.map((faq) => (
+              <details class="group card border-l-4 border-l-brand-primary/30 hover:border-l-brand-primary transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer p-6 list-none">
+                  <span class="font-semibold text-text-primary pr-4">{faq.q}</span>
+                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-secondary flex items-center justify-center group-open:rotate-180 transition-transform">
+                    <svg class="w-5 h-5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 pt-0"><p class="text-text-secondary leading-relaxed">{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
