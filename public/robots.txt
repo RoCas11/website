@@ -1,0 +1,12 @@
+# Block-Builders Tech
+# https://block-builders.tech
+
+User-agent: *
+Allow: /
+
+# Disallow admin and API
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://block-builders.tech/sitemap.xml
