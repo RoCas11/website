@@ -1,0 +1,99 @@
+---
+import { type Locale } from '@/lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    label: 'Proceso', title: 'Cómo funciona', subtitle: 'De la operación al audit bundle en 4 pasos simples.',
+    steps: [
+      { number: '01', title: 'Configura tu template', description: 'Define los tipos de activos, eventos y campos que necesitas.', detail: 'JSON Schema + State Machine' },
+      { number: '02', title: 'Crea pasaportes', description: 'Cada activo obtiene un pasaporte digital único con ID trazable.', detail: 'QR Code + ID único' },
+      { number: '03', title: 'Registra eventos', description: 'Desde la app móvil o web, registra cada paso con fotos y firma digital.', detail: 'Offline-first + Sync' },
+      { number: '04', title: 'Exporta audit bundle', description: 'Genera un paquete ZIP verificable con toda la evidencia.', detail: 'Verificación independiente' }
+    ],
+    features: [
+      { icon: 'mobile', label: 'App móvil nativa' },
+      { icon: 'offline', label: 'Funciona sin internet' },
+      { icon: 'sync', label: 'Sincronización automática' },
+      { icon: 'blockchain', label: 'Blockchain anchoring opcional' }
+    ]
+  },
+  en: {
+    label: 'Process', title: 'How it works', subtitle: 'From operation to audit bundle in 4 simple steps.',
+    steps: [
+      { number: '01', title: 'Configure your template', description: 'Define the asset types, events and fields you need.', detail: 'JSON Schema + State Machine' },
+      { number: '02', title: 'Create passports', description: 'Each asset gets a unique digital passport with traceable ID.', detail: 'QR Code + Unique ID' },
+      { number: '03', title: 'Record events', description: 'From mobile or web app, record each step with photos and digital signature.', detail: 'Offline-first + Sync' },
+      { number: '04', title: 'Export audit bundle', description: 'Generate a verifiable ZIP package with all evidence.', detail: 'Independent verification' }
+    ],
+    features: [
+      { icon: 'mobile', label: 'Native mobile app' },
+      { icon: 'offline', label: 'Works without internet' },
+      { icon: 'sync', label: 'Automatic synchronization' },
+      { icon: 'blockchain', label: 'Optional blockchain anchoring' }
+    ]
+  },
+  pt: {
+    label: 'Processo', title: 'Como funciona', subtitle: 'Da operação ao audit bundle em 4 passos simples.',
+    steps: [
+      { number: '01', title: 'Configure seu template', description: 'Defina os tipos de ativos, eventos e campos que você precisa.', detail: 'JSON Schema + State Machine' },
+      { number: '02', title: 'Crie passaportes', description: 'Cada ativo obtém um passaporte digital único com ID rastreável.', detail: 'QR Code + ID único' },
+      { number: '03', title: 'Registre eventos', description: 'Do app móvel ou web, registre cada passo com fotos e assinatura digital.', detail: 'Offline-first + Sync' },
+      { number: '04', title: 'Exporte audit bundle', description: 'Gere um pacote ZIP verificável com toda a evidência.', detail: 'Verificação independente' }
+    ],
+    features: [
+      { icon: 'mobile', label: 'App móvel nativo' },
+      { icon: 'offline', label: 'Funciona sem internet' },
+      { icon: 'sync', label: 'Sincronização automática' },
+      { icon: 'blockchain', label: 'Blockchain anchoring opcional' }
+    ]
+  }
+};
+const t = content[locale];
+---
+
+<section class="section bg-brand-dark text-white overflow-hidden" id="como-funciona">
+  <div class="container-custom">
+    <div class="section-header">
+      <span class="badge-white mb-4">{t.label}</span>
+      <h2 class="text-display-md font-bold text-white mb-4">{t.title}</h2>
+      <p class="text-lg text-white/70 max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+    
+    <div class="relative">
+      <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-white/10 -translate-y-1/2"></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {t.steps.map((step, index) => (
+          <div class="relative reveal" style={`animation-delay: ${index * 150}ms`}>
+            <div class="relative z-10 w-20 h-20 rounded-2xl bg-gradient-brand flex items-center justify-center mx-auto mb-6 shadow-brand-lg">
+              <span class="text-2xl font-bold text-white">{step.number}</span>
+            </div>
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-white mb-3">{step.title}</h3>
+              <p class="text-white/70 mb-4 leading-relaxed">{step.description}</p>
+              <span class="inline-block px-3 py-1 bg-white/10 rounded-full text-sm text-white/80 font-mono">{step.detail}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mt-16 pt-16 border-t border-white/10">
+      <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+        {t.features.map((feature) => (
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+              {feature.icon === 'mobile' && <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>}
+              {feature.icon === 'offline' && <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" /></svg>}
+              {feature.icon === 'sync' && <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>}
+              {feature.icon === 'blockchain' && <svg class="w-5 h-5 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>}
+            </div>
+            <span class="text-white/80 font-medium">{feature.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

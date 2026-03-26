@@ -1,0 +1,90 @@
+---
+import { type Locale } from '@/lib/i18n';
+import Button from '@/components/common/Button.astro';
+import navigation from '@content/config/navigation.json';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    label: 'Precios', title: 'Planes simples y transparentes', subtitle: 'Sin costos ocultos. Escala cuando lo necesites.',
+    monthly: 'mes', popular: 'Más popular', contactSales: 'Contactar ventas', getStarted: 'Comenzar ahora', includes: 'Incluye:',
+    plans: [
+      { name: 'Starter', description: 'Para equipos pequeños que comienzan con trazabilidad.', price: '299', currency: 'USD', features: ['Hasta 500 pasaportes/mes', '3 usuarios incluidos', '1 template de industria', 'App móvil', 'Firma digital Ed25519', 'Soporte por email'], cta: 'start' },
+      { name: 'Professional', description: 'Para operaciones que requieren escala y personalización.', price: '799', currency: 'USD', popular: true, features: ['Hasta 5,000 pasaportes/mes', '15 usuarios incluidos', 'Templates ilimitados', 'API access completo', 'Webhooks e integraciones', 'Soporte prioritario', 'Onboarding dedicado'], cta: 'start' },
+      { name: 'Enterprise', description: 'Para organizaciones con requerimientos específicos.', price: 'Custom', features: ['Pasaportes ilimitados', 'Usuarios ilimitados', 'Multi-organización', 'SSO / SAML', 'Blockchain anchoring', 'SLA 99.9%', 'Soporte 24/7'], cta: 'contact' }
+    ]
+  },
+  en: {
+    label: 'Pricing', title: 'Simple, transparent pricing', subtitle: 'No hidden costs. Scale when you need it.',
+    monthly: 'month', popular: 'Most popular', contactSales: 'Contact sales', getStarted: 'Get started', includes: 'Includes:',
+    plans: [
+      { name: 'Starter', description: 'For small teams starting with traceability.', price: '299', currency: 'USD', features: ['Up to 500 passports/month', '3 users included', '1 industry template', 'Mobile app', 'Ed25519 digital signature', 'Email support'], cta: 'start' },
+      { name: 'Professional', description: 'For operations requiring scale and customization.', price: '799', currency: 'USD', popular: true, features: ['Up to 5,000 passports/month', '15 users included', 'Unlimited templates', 'Full API access', 'Webhooks and integrations', 'Priority support', 'Dedicated onboarding'], cta: 'start' },
+      { name: 'Enterprise', description: 'For organizations with specific requirements.', price: 'Custom', features: ['Unlimited passports', 'Unlimited users', 'Multi-organization', 'SSO / SAML', 'Blockchain anchoring', '99.9% SLA', '24/7 support'], cta: 'contact' }
+    ]
+  },
+  pt: {
+    label: 'Preços', title: 'Preços simples e transparentes', subtitle: 'Sem custos ocultos. Escale quando precisar.',
+    monthly: 'mês', popular: 'Mais popular', contactSales: 'Contatar vendas', getStarted: 'Começar agora', includes: 'Inclui:',
+    plans: [
+      { name: 'Starter', description: 'Para equipes pequenas começando com rastreabilidade.', price: '299', currency: 'USD', features: ['Até 500 passaportes/mês', '3 usuários incluídos', '1 template de indústria', 'App móvel', 'Assinatura digital Ed25519', 'Suporte por email'], cta: 'start' },
+      { name: 'Professional', description: 'Para operações que requerem escala e personalização.', price: '799', currency: 'USD', popular: true, features: ['Até 5.000 passaportes/mês', '15 usuários incluídos', 'Templates ilimitados', 'Acesso API completo', 'Webhooks e integrações', 'Suporte prioritário', 'Onboarding dedicado'], cta: 'start' },
+      { name: 'Enterprise', description: 'Para organizações com requisitos específicos.', price: 'Custom', features: ['Passaportes ilimitados', 'Usuários ilimitados', 'Multi-organização', 'SSO / SAML', 'Blockchain anchoring', 'SLA 99.9%', 'Suporte 24/7'], cta: 'contact' }
+    ]
+  }
+};
+const t = content[locale];
+---
+
+<section class="section bg-surface-secondary" id="precios">
+  <div class="container-custom">
+    <div class="section-header">
+      <span class="badge-primary mb-4">{t.label}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-subtitle">{t.subtitle}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {t.plans.map((plan, index) => (
+        <div class={`relative card ${plan.popular ? 'border-2 border-brand-primary shadow-brand-lg' : ''} reveal`} style={`animation-delay: ${index * 100}ms`}>
+          {plan.popular && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-gradient-brand text-white text-sm font-semibold px-4 py-1 rounded-full shadow-brand">{t.popular}</span>
+            </div>
+          )}
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-text-primary mb-2">{plan.name}</h3>
+            <p class="text-text-secondary mb-6">{plan.description}</p>
+            <div class="mb-8">
+              {plan.price === 'Custom' ? (
+                <span class="text-4xl font-extrabold text-text-primary">{plan.price}</span>
+              ) : (
+                <div class="flex items-baseline gap-1">
+                  <span class="text-lg text-text-tertiary">{plan.currency}</span>
+                  <span class="text-5xl font-extrabold text-text-primary">{plan.price}</span>
+                  <span class="text-text-tertiary">/{t.monthly}</span>
+                </div>
+              )}
+            </div>
+            <div class="mb-8">
+              <p class="text-sm font-medium text-text-tertiary mb-4">{t.includes}</p>
+              <ul class="space-y-3">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    <span class="text-text-secondary">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Button href={plan.cta === 'contact' ? '/#contacto' : navigation.ctaLinks.demo} variant={plan.popular ? 'primary' : 'secondary'} class="w-full justify-center" external={plan.cta === 'start'}>
+              {plan.cta === 'contact' ? t.contactSales : t.getStarted}
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
