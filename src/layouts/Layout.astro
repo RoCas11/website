@@ -1,0 +1,84 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { getLocaleFromPath, t } from '@/lib/i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
+
+const { title, description, ogImage, noIndex = false } = Astro.props;
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const siteTitle = t(locale, 'site.name');
+const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+const pageDescription = description || t(locale, 'site.description');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|pt)/, ''), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(`/en${Astro.url.pathname.replace(/^\/(en|pt)/, '')}`, Astro.site)} />
+    <link rel="alternate" hreflang="pt" href={new URL(`/pt${Astro.url.pathname.replace(/^\/(en|pt)/, '')}`, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|pt)/, ''), Astro.site)} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header locale={locale} />
+    
+    <main class="flex-1">
+      <slot />
+    </main>
+    
+    <Footer locale={locale} />
+    
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>
