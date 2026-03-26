@@ -1,0 +1,85 @@
+---
+import { type Locale } from '@/lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    label: 'El Desafío', title: '¿Cómo demostrar lo que pasó?', subtitle: 'Las empresas enfrentan desafíos críticos para mantener trazabilidad verificable.',
+    challenges: [
+      { title: 'Registros en papel o Excel', description: 'Fáciles de perder, modificar o falsificar. Sin firma digital ni timestamp.', icon: 'document' },
+      { title: 'Auditorías costosas', description: 'Semanas recopilando evidencia dispersa. Recursos dedicados a buscar papeles.', icon: 'clock' },
+      { title: 'Operación sin conexión', description: 'Pozos, plantas, obras remotas sin internet. Los datos se pierden o llegan tarde.', icon: 'wifi-off' }
+    ],
+    stats: [
+      { value: '73%', label: 'de empresas', sublabel: 'No pueden reconstruir trazabilidad completa' },
+      { value: '45', label: 'días promedio', sublabel: 'Para preparar una auditoría' },
+      { value: '$2.4M', label: 'costo promedio', sublabel: 'Por falla de compliance' }
+    ]
+  },
+  en: {
+    label: 'The Challenge', title: 'How to prove what happened?', subtitle: 'Companies face critical challenges maintaining verifiable traceability.',
+    challenges: [
+      { title: 'Paper or Excel records', description: 'Easy to lose, modify or falsify. No digital signature or timestamp.', icon: 'document' },
+      { title: 'Costly audits', description: 'Weeks gathering scattered evidence. Resources dedicated to searching papers.', icon: 'clock' },
+      { title: 'Offline operations', description: 'Wells, plants, remote sites without internet. Data gets lost or arrives late.', icon: 'wifi-off' }
+    ],
+    stats: [
+      { value: '73%', label: 'of companies', sublabel: 'Cannot reconstruct complete traceability' },
+      { value: '45', label: 'average days', sublabel: 'To prepare an audit' },
+      { value: '$2.4M', label: 'average cost', sublabel: 'Per compliance failure' }
+    ]
+  },
+  pt: {
+    label: 'O Desafio', title: 'Como provar o que aconteceu?', subtitle: 'As empresas enfrentam desafios críticos para manter rastreabilidade verificável.',
+    challenges: [
+      { title: 'Registros em papel ou Excel', description: 'Fáceis de perder, modificar ou falsificar. Sem assinatura digital nem timestamp.', icon: 'document' },
+      { title: 'Auditorias custosas', description: 'Semanas coletando evidências dispersas. Recursos dedicados a buscar papéis.', icon: 'clock' },
+      { title: 'Operação sem conexão', description: 'Poços, plantas, obras remotas sem internet. Os dados se perdem ou chegam tarde.', icon: 'wifi-off' }
+    ],
+    stats: [
+      { value: '73%', label: 'das empresas', sublabel: 'Não conseguem reconstruir rastreabilidade completa' },
+      { value: '45', label: 'dias em média', sublabel: 'Para preparar uma auditoria' },
+      { value: '$2.4M', label: 'custo médio', sublabel: 'Por falha de compliance' }
+    ]
+  }
+};
+const t = content[locale];
+---
+
+<section class="section bg-white" id="problema">
+  <div class="container-custom">
+    <div class="section-header">
+      <span class="badge-primary mb-4">{t.label}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-subtitle">{t.subtitle}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {t.challenges.map((challenge, index) => (
+        <div class="card-hover group reveal" style={`animation-delay: ${index * 100}ms`}>
+          <div class="w-14 h-14 rounded-2xl bg-error-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            {challenge.icon === 'document' && <svg class="w-7 h-7 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>}
+            {challenge.icon === 'clock' && <svg class="w-7 h-7 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+            {challenge.icon === 'wifi-off' && <svg class="w-7 h-7 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" /></svg>}
+          </div>
+          <h3 class="text-xl font-bold text-text-primary mb-3">{challenge.title}</h3>
+          <p class="text-text-secondary leading-relaxed">{challenge.description}</p>
+        </div>
+      ))}
+    </div>
+    
+    <div class="bg-surface-secondary rounded-3xl p-8 md:p-12">
+      <div class="grid md:grid-cols-3 gap-8">
+        {t.stats.map((stat, index) => (
+          <div class="text-center reveal" style={`animation-delay: ${index * 100}ms`}>
+            <div class="text-5xl md:text-6xl font-extrabold text-gradient mb-2">{stat.value}</div>
+            <div class="text-lg font-semibold text-text-primary mb-1">{stat.label}</div>
+            <div class="text-sm text-text-tertiary">{stat.sublabel}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
