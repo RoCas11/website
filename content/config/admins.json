@@ -1,0 +1,28 @@
+{
+  "admins": [
+    {
+      "id": "admin-001",
+      "email": "admin@block-builders.tech",
+      "name": "Super Admin",
+      "role": "superadmin",
+      "passwordHash": "$2a$12$PLACEHOLDER_HASH_REPLACE_WITH_REAL",
+      "createdAt": "2025-01-01T00:00:00Z",
+      "active": true
+    }
+  ],
+  "roles": {
+    "superadmin": {
+      "permissions": ["*"]
+    },
+    "editor": {
+      "permissions": ["blog:*", "clients:*", "alliances:*", "videos:*", "pages:read", "seo:read"]
+    },
+    "viewer": {
+      "permissions": ["*:read"]
+    }
+  },
+  "session": {
+    "expiresIn": "7d",
+    "cookieName": "bb_admin_session"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "site": {
+    "name": "Block-Builders Tech",
+    "domain": "block-builders.tech",
+    "defaultLocale": "es",
+    "locales": ["es", "en", "pt"],
+    "timezone": "America/Argentina/Buenos_Aires"
+  },
+  "brand": {
+    "colors": {
+      "primary": "#1E3A8A",
+      "primaryDark": "#162247",
+      "accent": "#034E7B",
+      "light": "#3B82F6"
+    },
+    "logos": {
+      "default": "/images/logos/logo.png",
+      "white": "/images/logos/logo-white.png",
+      "horizontal": "/images/logos/logo-horizontal.png",
+      "horizontalWhite": "/images/logos/logo-horizontal-white.png",
+      "icon": "/images/logos/icon.png"
+    },
+    "favicon": "/favicon.ico"
+  },
+  "contact": {
+    "email": "contacto@block-builders.tech",
+    "location": "Buenos Aires, Argentina",
+    "calendly": "https://cal.com/block-builders/30min",
+    "webhookUrl": "https://agent.johnfox.click/webhook/contacto_block_builders"
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/company/block-builders-tech",
+    "twitter": "https://twitter.com/blockbuilderstech"
+  },
+  "features": {
+    "blog": true,
+    "multiLanguage": true,
+    "analytics": true,
+    "contactForm": true
+  },
+  "compliance": [
+    { "name": "Ley 25.326", "icon": "shield" },
+    { "name": "ISO 27001", "icon": "award" },
+    { "name": "WCAG 2.1 AA", "icon": "accessibility" }
+  ]
+}
