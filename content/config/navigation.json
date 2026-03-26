@@ -1,0 +1,85 @@
+{
+  "mainNav": [
+    {
+      "key": "products",
+      "type": "dropdown",
+      "items": [
+        {
+          "key": "passport",
+          "href": "/passport-platform",
+          "icon": "shield-check",
+          "description": {
+            "es": "Trazabilidad audit-ready",
+            "en": "Audit-ready traceability",
+            "pt": "Rastreabilidade audit-ready"
+          }
+        },
+        {
+          "key": "comingSoon",
+          "href": "#",
+          "icon": "sparkles",
+          "disabled": true,
+          "description": {
+            "es": "Más productos en desarrollo",
+            "en": "More products in development",
+            "pt": "Mais produtos em desenvolvimento"
+          }
+        }
+      ]
+    },
+    { "key": "industries", "href": "/#industrias" },
+    { "key": "pricing", "href": "/#precios" },
+    { "key": "about", "href": "/nosotros" },
+    { "key": "blog", "href": "/blog" },
+    { "key": "contact", "href": "/#contacto" }
+  ],
+  "footerNav": {
+    "product": [
+      { "key": "passport", "href": "/passport-platform" },
+      { "key": "features", "href": "/#features" },
+      { "key": "industries", "href": "/#industrias" },
+      { "key": "pricing", "href": "/#precios" },
+      { "key": "howItWorks", "href": "/#como-funciona" }
+    ],
+    "company": [
+      { "key": "about", "href": "/nosotros" },
+      { "key": "team", "href": "/nosotros#equipo" },
+      { "key": "blog", "href": "/blog" },
+      { "key": "contact", "href": "/#contacto" },
+      { "key": "careers", "href": "/careers" }
+    ],
+    "resources": [
+      { "key": "docs", "href": "/docs" },
+      { "key": "api", "href": "/api" },
+      { "key": "faq", "href": "/faq" },
+      { "key": "useCases", "href": "/casos" },
+      { "key": "status", "href": "/status" }
+    ],
+    "legal": [
+      { "key": "terms", "href": "/terminos-condiciones" },
+      { "key": "privacy", "href": "/politica-privacidad" },
+      { "key": "cookies", "href": "/cookies" },
+      { "key": "security", "href": "/seguridad" }
+    ]
+  },
+  "industries": [
+    { "id": "bioremediation", "href": "/biorremediacion", "color": "bio", "icon": "leaf" },
+    { "id": "oil-gas", "href": "/oil-gas", "color": "oil", "icon": "droplet" },
+    { "id": "logistics", "href": "/logistica", "color": "logistics", "icon": "truck" },
+    { "id": "manufacturing", "href": "/manufactura", "color": "manufacturing", "icon": "factory" },
+    { "id": "construction", "href": "/construccion", "color": "construction", "icon": "building" },
+    { "id": "health", "href": "/salud", "color": "health", "icon": "heart-pulse" },
+    { "id": "legal", "href": "/legal", "color": "legal", "icon": "scale" },
+    { "id": "software", "href": "/software", "color": "software", "icon": "code" }
+  ],
+  "socialLinks": [
+    { "name": "LinkedIn", "href": "https://linkedin.com/company/block-builders-tech", "icon": "linkedin" },
+    { "name": "Twitter", "href": "https://twitter.com/blockbuilderstech", "icon": "twitter" }
+  ],
+  "ctaLinks": {
+    "demo": "https://cal.com/block-builders/30min",
+    "login": "https://portal.block-builders.tech/login",
+    "checkoutStarter": "https://checkout.stripe.com/starter",
+    "checkoutProfessional": "https://checkout.stripe.com/professional"
+  }
+}

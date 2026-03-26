@@ -1,0 +1,67 @@
+{
+  "defaults": {
+    "es": {
+      "title": "Block-Builders Tech | Trazabilidad Audit-Ready",
+      "description": "Plataforma de trazabilidad digital con firma criptográfica y blockchain. Documenta, verifica y audita tus procesos empresariales.",
+      "keywords": ["trazabilidad", "blockchain", "firma digital", "auditoría", "compliance", "passport platform"],
+      "ogImage": "/images/og-default-es.jpg"
+    },
+    "en": {
+      "title": "Block-Builders Tech | Audit-Ready Traceability",
+      "description": "Digital traceability platform with cryptographic signatures and blockchain. Document, verify and audit your business processes.",
+      "keywords": ["traceability", "blockchain", "digital signature", "audit", "compliance", "passport platform"],
+      "ogImage": "/images/og-default-en.jpg"
+    },
+    "pt": {
+      "title": "Block-Builders Tech | Rastreabilidade Audit-Ready",
+      "description": "Plataforma de rastreabilidade digital com assinatura criptográfica e blockchain. Documente, verifique e audite seus processos empresariais.",
+      "keywords": ["rastreabilidade", "blockchain", "assinatura digital", "auditoria", "compliance", "passport platform"],
+      "ogImage": "/images/og-default-pt.jpg"
+    }
+  },
+  "pages": {
+    "/": {
+      "es": {
+        "title": "Block-Builders Tech | Construimos el futuro bloque a bloque",
+        "description": "Trazabilidad audit-ready para procesos empresariales. Firma digital Ed25519, modo offline y blockchain anchoring."
+      },
+      "en": {
+        "title": "Block-Builders Tech | Building the future block by block",
+        "description": "Audit-ready traceability for business processes. Ed25519 digital signature, offline mode and blockchain anchoring."
+      },
+      "pt": {
+        "title": "Block-Builders Tech | Construímos o futuro bloco a bloco",
+        "description": "Rastreabilidade audit-ready para processos empresariais. Assinatura digital Ed25519, modo offline e blockchain anchoring."
+      }
+    },
+    "/passport-platform": {
+      "es": {
+        "title": "Passport Platform | Trazabilidad Verificable | Block-Builders",
+        "description": "La plataforma que convierte cada paso de tus procesos en evidencia verificable e inmutable, lista para cualquier auditoría."
+      },
+      "en": {
+        "title": "Passport Platform | Verifiable Traceability | Block-Builders",
+        "description": "The platform that turns every step of your processes into verifiable and immutable evidence, ready for any audit."
+      },
+      "pt": {
+        "title": "Passport Platform | Rastreabilidade Verificável | Block-Builders",
+        "description": "A plataforma que transforma cada passo dos seus processos em evidência verificável e imutável, pronta para qualquer auditoria."
+      }
+    }
+  },
+  "structuredData": {
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Block-Builders Tech",
+      "url": "https://block-builders.tech",
+      "logo": "https://block-builders.tech/images/logos/logo.png",
+      "sameAs": ["https://linkedin.com/company/block-builders-tech"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contacto@block-builders.tech",
+        "contactType": "sales"
+      }
+    }
+  }
+}
