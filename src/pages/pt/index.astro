@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Clients from '@/components/sections/Clients.astro';
+import Problem from '@/components/sections/Problem.astro';
+import Solution from '@/components/sections/Solution.astro';
+import HowItWorks from '@/components/sections/HowItWorks.astro';
+import Industries from '@/components/sections/Industries.astro';
+import Pricing from '@/components/sections/Pricing.astro';
+import FAQ from '@/components/sections/FAQ.astro';
+import Contact from '@/components/sections/Contact.astro';
+
+const locale = 'pt';
+---
+
+<Layout>
+  <Hero locale={locale} />
+  <Clients locale={locale} />
+  <Problem locale={locale} />
+  <Solution locale={locale} />
+  <HowItWorks locale={locale} />
+  <Industries locale={locale} />
+  <Pricing locale={locale} />
+  <FAQ locale={locale} />
+  <Contact locale={locale} />
+</Layout>

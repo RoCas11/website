@@ -1,0 +1,39 @@
+---
+import { type Locale } from '@/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const content = {
+  es: { title: 'Confían en nosotros' },
+  en: { title: 'They trust us' },
+  pt: { title: 'Confiam em nós' }
+};
+
+const t = content[locale];
+
+const clients = [
+  { name: 'YPF', logo: '/images/clients/ypf.svg' },
+  { name: 'PAE', logo: '/images/clients/pae.svg' },
+  { name: 'Tecpetrol', logo: '/images/clients/tecpetrol.svg' },
+  { name: 'Vista', logo: '/images/clients/vista.svg' },
+  { name: 'Pluspetrol', logo: '/images/clients/pluspetrol.svg' },
+  { name: 'CGC', logo: '/images/clients/cgc.svg' }
+];
+---
+
+<section class="section bg-surface-secondary py-16" id="clientes">
+  <div class="container-custom">
+    <p class="text-center text-text-tertiary font-medium mb-8">{t.title}</p>
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+      {clients.map((client) => (
+        <div class="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+          <img src={client.logo} alt={client.name} class="h-10 md:h-12 w-auto object-contain" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
