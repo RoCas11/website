@@ -1,0 +1,77 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getLocaleFromPath, type Locale } from '@/lib/i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname) as Locale;
+
+const content = {
+  es: {
+    title: 'Términos y Condiciones',
+    description: 'Términos y condiciones de uso de Block-Builders Tech',
+    lastUpdate: 'Última actualización: Enero 2026',
+    sections: [
+      { title: '1. Aceptación de los Términos', content: 'Al acceder y utilizar los servicios de Block-Builders Tech, usted acepta estar sujeto a estos Términos y Condiciones.' },
+      { title: '2. Descripción del Servicio', content: 'Block-Builders Tech proporciona una plataforma de trazabilidad digital que permite crear pasaportes digitales, registrar eventos con firma criptográfica y generar audit bundles verificables.' },
+      { title: '3. Registro y Cuentas', content: 'Debe proporcionar información precisa durante el registro, mantener la confidencialidad de sus credenciales y notificar cualquier uso no autorizado.' },
+      { title: '4. Uso Aceptable', content: 'No utilizar la Plataforma para actividades ilegales, intentar acceder a sistemas sin autorización, ni falsificar información o firmas digitales.' },
+      { title: '5. Propiedad Intelectual', content: 'Todo el contenido de la Plataforma es propiedad de Block-Builders Tech. Usted conserva la propiedad de los datos que carga en la Plataforma.' },
+      { title: '6. Privacidad y Datos', content: 'El tratamiento de datos personales se rige por nuestra Política de Privacidad conforme a la Ley 25.326.' },
+      { title: '7. Limitación de Responsabilidad', content: 'Block-Builders Tech no será responsable por daños indirectos. Nuestra responsabilidad máxima se limita al monto pagado en los últimos 12 meses.' },
+      { title: '8. Ley Aplicable', content: 'Estos términos se rigen por las leyes de la República Argentina. Jurisdicción: tribunales de Buenos Aires.' },
+      { title: '9. Contacto', content: 'Para consultas: legal@block-builders.tech' }
+    ]
+  },
+  en: {
+    title: 'Terms and Conditions',
+    description: 'Terms and conditions of use for Block-Builders Tech',
+    lastUpdate: 'Last updated: January 2026',
+    sections: [
+      { title: '1. Acceptance of Terms', content: 'By accessing and using Block-Builders Tech services, you agree to be bound by these Terms and Conditions.' },
+      { title: '2. Service Description', content: 'Block-Builders Tech provides a digital traceability platform for creating digital passports, recording cryptographically signed events, and generating verifiable audit bundles.' },
+      { title: '3. Registration and Accounts', content: 'You must provide accurate information during registration, maintain credential confidentiality, and notify any unauthorized use.' },
+      { title: '4. Acceptable Use', content: 'Do not use the Platform for illegal activities, attempt unauthorized access, or falsify information or digital signatures.' },
+      { title: '5. Intellectual Property', content: 'All Platform content is property of Block-Builders Tech. You retain ownership of data you upload.' },
+      { title: '6. Privacy and Data', content: 'Personal data processing is governed by our Privacy Policy in accordance with Law 25.326.' },
+      { title: '7. Limitation of Liability', content: 'Block-Builders Tech will not be liable for indirect damages. Maximum liability limited to amounts paid in the last 12 months.' },
+      { title: '8. Governing Law', content: 'These terms are governed by Argentine law. Jurisdiction: Buenos Aires courts.' },
+      { title: '9. Contact', content: 'For inquiries: legal@block-builders.tech' }
+    ]
+  },
+  pt: {
+    title: 'Termos e Condições',
+    description: 'Termos e condições de uso da Block-Builders Tech',
+    lastUpdate: 'Última atualização: Janeiro 2026',
+    sections: [
+      { title: '1. Aceitação dos Termos', content: 'Ao acessar e utilizar os serviços da Block-Builders Tech, você concorda em estar vinculado a estes Termos e Condições.' },
+      { title: '2. Descrição do Serviço', content: 'A Block-Builders Tech fornece uma plataforma de rastreabilidade digital para criar passaportes digitais, registrar eventos com assinatura criptográfica e gerar audit bundles verificáveis.' },
+      { title: '3. Registro e Contas', content: 'Deve fornecer informações precisas durante o registro, manter a confidencialidade das credenciais e notificar uso não autorizado.' },
+      { title: '4. Uso Aceitável', content: 'Não usar a Plataforma para atividades ilegais, tentar acesso não autorizado ou falsificar informações ou assinaturas digitais.' },
+      { title: '5. Propriedade Intelectual', content: 'Todo o conteúdo da Plataforma é propriedade da Block-Builders Tech. Você mantém a propriedade dos dados que carrega.' },
+      { title: '6. Privacidade e Dados', content: 'O tratamento de dados pessoais é regido por nossa Política de Privacidade conforme a Lei 25.326.' },
+      { title: '7. Limitação de Responsabilidade', content: 'A Block-Builders Tech não será responsável por danos indiretos. Responsabilidade máxima limitada aos valores pagos nos últimos 12 meses.' },
+      { title: '8. Lei Aplicável', content: 'Estes termos são regidos pelas leis argentinas. Jurisdição: tribunais de Buenos Aires.' },
+      { title: '9. Contato', content: 'Para consultas: legal@block-builders.tech' }
+    ]
+  }
+};
+
+const t = content[locale];
+---
+
+<Layout title={t.title} description={t.description}>
+  <section class="section bg-white">
+    <div class="container-custom max-w-4xl">
+      <h1 class="text-display-md font-bold text-text-primary mb-4">{t.title}</h1>
+      <p class="text-text-tertiary mb-12">{t.lastUpdate}</p>
+      
+      <div class="space-y-12">
+        {t.sections.map((section) => (
+          <div>
+            <h2 class="text-xl font-bold text-text-primary mb-4">{section.title}</h2>
+            <p class="text-text-secondary leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
