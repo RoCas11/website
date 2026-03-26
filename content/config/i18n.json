@@ -1,0 +1,185 @@
+{
+  "es": {
+    "site": {
+      "name": "Block-Builders Tech",
+      "tagline": "Construimos el futuro bloque a bloque",
+      "description": "Trazabilidad audit-ready para procesos empresariales"
+    },
+    "nav": {
+      "products": "Productos",
+      "industries": "Industrias",
+      "pricing": "Precios",
+      "about": "Nosotros",
+      "blog": "Blog",
+      "contact": "Contacto",
+      "login": "Iniciar sesión",
+      "demo": "Agendar demo",
+      "passport": "Passport Platform",
+      "comingSoon": "Próximamente"
+    },
+    "hero": {
+      "badge": "Passport Platform",
+      "title": "Construimos el futuro bloque a bloque",
+      "subtitle": "Trazabilidad audit-ready para procesos empresariales. Cada paso documentado con evidencia verificable e inmutable.",
+      "cta": "Agendar demo gratuita",
+      "ctaSecondary": "Ver cómo funciona"
+    },
+    "features": {
+      "signature": "Firma criptográfica Ed25519",
+      "offline": "Funciona sin conexión",
+      "blockchain": "Blockchain opcional"
+    },
+    "footer": {
+      "product": "Producto",
+      "company": "Empresa",
+      "resources": "Recursos",
+      "legal": "Legal",
+      "rights": "Todos los derechos reservados",
+      "terms": "Términos de servicio",
+      "privacy": "Política de privacidad",
+      "cookies": "Cookies",
+      "security": "Seguridad"
+    },
+    "cta": {
+      "contact": "Contactar",
+      "learnMore": "Saber más",
+      "getStarted": "Comenzar",
+      "scheduleDemo": "Agendar demo",
+      "sendMessage": "Enviar mensaje"
+    },
+    "form": {
+      "name": "Nombre",
+      "lastName": "Apellido",
+      "email": "Email corporativo",
+      "company": "Empresa",
+      "industry": "Industria",
+      "message": "¿En qué podemos ayudarte?",
+      "select": "Seleccionar...",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te contactaremos pronto.",
+      "error": "Error al enviar. Intenta nuevamente."
+    }
+  },
+  "en": {
+    "site": {
+      "name": "Block-Builders Tech",
+      "tagline": "Building the future block by block",
+      "description": "Audit-ready traceability for business processes"
+    },
+    "nav": {
+      "products": "Products",
+      "industries": "Industries",
+      "pricing": "Pricing",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact",
+      "login": "Log in",
+      "demo": "Book demo",
+      "passport": "Passport Platform",
+      "comingSoon": "Coming soon"
+    },
+    "hero": {
+      "badge": "Passport Platform",
+      "title": "Building the future block by block",
+      "subtitle": "Audit-ready traceability for business processes. Every step documented with verifiable and immutable evidence.",
+      "cta": "Book free demo",
+      "ctaSecondary": "See how it works"
+    },
+    "features": {
+      "signature": "Ed25519 cryptographic signature",
+      "offline": "Works offline",
+      "blockchain": "Optional blockchain"
+    },
+    "footer": {
+      "product": "Product",
+      "company": "Company",
+      "resources": "Resources",
+      "legal": "Legal",
+      "rights": "All rights reserved",
+      "terms": "Terms of service",
+      "privacy": "Privacy policy",
+      "cookies": "Cookies",
+      "security": "Security"
+    },
+    "cta": {
+      "contact": "Contact",
+      "learnMore": "Learn more",
+      "getStarted": "Get started",
+      "scheduleDemo": "Book demo",
+      "sendMessage": "Send message"
+    },
+    "form": {
+      "name": "Name",
+      "lastName": "Last name",
+      "email": "Corporate email",
+      "company": "Company",
+      "industry": "Industry",
+      "message": "How can we help?",
+      "select": "Select...",
+      "sending": "Sending...",
+      "success": "Message sent! We'll contact you soon.",
+      "error": "Error sending. Please try again."
+    }
+  },
+  "pt": {
+    "site": {
+      "name": "Block-Builders Tech",
+      "tagline": "Construímos o futuro bloco a bloco",
+      "description": "Rastreabilidade audit-ready para processos empresariais"
+    },
+    "nav": {
+      "products": "Produtos",
+      "industries": "Indústrias",
+      "pricing": "Preços",
+      "about": "Sobre",
+      "blog": "Blog",
+      "contact": "Contato",
+      "login": "Entrar",
+      "demo": "Agendar demo",
+      "passport": "Passport Platform",
+      "comingSoon": "Em breve"
+    },
+    "hero": {
+      "badge": "Passport Platform",
+      "title": "Construímos o futuro bloco a bloco",
+      "subtitle": "Rastreabilidade audit-ready para processos empresariais. Cada passo documentado com evidência verificável e imutável.",
+      "cta": "Agendar demo gratuita",
+      "ctaSecondary": "Veja como funciona"
+    },
+    "features": {
+      "signature": "Assinatura criptográfica Ed25519",
+      "offline": "Funciona offline",
+      "blockchain": "Blockchain opcional"
+    },
+    "footer": {
+      "product": "Produto",
+      "company": "Empresa",
+      "resources": "Recursos",
+      "legal": "Legal",
+      "rights": "Todos os direitos reservados",
+      "terms": "Termos de serviço",
+      "privacy": "Política de privacidade",
+      "cookies": "Cookies",
+      "security": "Segurança"
+    },
+    "cta": {
+      "contact": "Contato",
+      "learnMore": "Saiba mais",
+      "getStarted": "Começar",
+      "scheduleDemo": "Agendar demo",
+      "sendMessage": "Enviar mensagem"
+    },
+    "form": {
+      "name": "Nome",
+      "lastName": "Sobrenome",
+      "email": "Email corporativo",
+      "company": "Empresa",
+      "industry": "Indústria",
+      "message": "Como podemos ajudar?",
+      "select": "Selecionar...",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada! Entraremos em contato em breve.",
+      "error": "Erro ao enviar. Tente novamente."
+    }
+  }
+}
