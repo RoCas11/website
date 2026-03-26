@@ -1,0 +1,151 @@
+---
+import { t, getLocalizedPath, getLocales, getLocaleDisplayName, type Locale } from '@/lib/i18n';
+import navigation from '@content/config/navigation.json';
+import settings from '@content/config/settings.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+&lt;header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-100" id="main-header"&gt;
+  &lt;div class="container-custom"&gt;
+    &lt;nav class="flex items-center justify-between h-20"&gt;
+      &lt;a href={getLocalizedPath('/', locale)} class="flex items-center gap-3"&gt;
+        &lt;img src="/images/logos/logo-horizontal.png" alt={settings.site.name} class="h-10 w-auto" /&gt;
+      &lt;/a&gt;
+      
+      &lt;div class="hidden lg:flex items-center gap-8"&gt;
+        {navigation.mainNav.map((item: any) =&gt; (
+          item.type === 'dropdown' ? (
+            &lt;div class="relative group"&gt;
+              &lt;button class="flex items-center gap-1 text-text-secondary hover:text-brand-primary font-medium transition-colors"&gt;
+                {t(locale, `nav.${item.key}`)}
+                &lt;svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+                  &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /&gt;
+                &lt;/svg&gt;
+              &lt;/button&gt;
+              &lt;div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"&gt;
+                &lt;div class="bg-white rounded-xl shadow-soft-lg border border-gray-100 p-2 min-w-[240px]"&gt;
+                  {item.items.map((subItem: any) =&gt; (
+                    &lt;a href={subItem.disabled ? '#' : getLocalizedPath(subItem.href, locale)} class={`flex items-start gap-3 p-3 rounded-lg transition-colors ${subItem.disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-surface-secondary'}`}&gt;
+                      &lt;div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0"&gt;
+                        &lt;svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+                          {subItem.icon === 'shield-check' &amp;&amp; &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /&gt;}
+                          {subItem.icon === 'sparkles' &amp;&amp; &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /&gt;}
+                        &lt;/svg&gt;
+                      &lt;/div&gt;
+                      &lt;div&gt;
+                        &lt;div class="font-semibold text-text-primary"&gt;{t(locale, `nav.${subItem.key}`)}&lt;/div&gt;
+                        &lt;div class="text-sm text-text-tertiary"&gt;{subItem.description[locale]}&lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/a&gt;
+                  ))}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          ) : (
+            &lt;a href={getLocalizedPath(item.href, locale)} class="text-text-secondary hover:text-brand-primary font-medium transition-colors"&gt;
+              {t(locale, `nav.${item.key}`)}
+            &lt;/a&gt;
+          )
+        ))}
+      &lt;/div&gt;
+      
+      &lt;div class="hidden lg:flex items-center gap-4"&gt;
+        &lt;div class="relative group"&gt;
+          &lt;button class="flex items-center gap-2 px-3 py-2 text-sm text-text-secondary hover:text-brand-primary transition-colors"&gt;
+            &lt;span class="uppercase font-medium"&gt;{locale}&lt;/span&gt;
+            &lt;svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+              &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /&gt;
+            &lt;/svg&gt;
+          &lt;/button&gt;
+          &lt;div class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"&gt;
+            &lt;div class="bg-white rounded-xl shadow-soft-lg border border-gray-100 p-1 min-w-[140px]"&gt;
+              {getLocales().map((loc) =&gt; (
+                &lt;a href={getLocalizedPath(currentPath.replace(/^\/(en|pt)/, ''), loc)} class={`block px-4 py-2 rounded-lg text-sm transition-colors ${loc === locale ? 'bg-brand-primary/10 text-brand-primary font-medium' : 'hover:bg-surface-secondary text-text-secondary'}`}&gt;
+                  {getLocaleDisplayName(loc)}
+                &lt;/a&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;a href={navigation.ctaLinks.login} class="text-text-secondary hover:text-brand-primary font-medium transition-colors"&gt;
+          {t(locale, 'nav.login')}
+        &lt;/a&gt;
+        
+        &lt;a href={navigation.ctaLinks.demo} class="btn-primary"&gt;
+          {t(locale, 'nav.demo')}
+        &lt;/a&gt;
+      &lt;/div&gt;
+      
+      &lt;button class="lg:hidden p-2 text-text-secondary hover:text-brand-primary" id="mobile-menu-btn" aria-label="Menu"&gt;
+        &lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="lg:hidden hidden" id="mobile-menu"&gt;
+    &lt;div class="container-custom py-4 border-t border-gray-100"&gt;
+      &lt;div class="flex flex-col gap-4"&gt;
+        {navigation.mainNav.map((item: any) =&gt; (
+          item.type === 'dropdown' ? (
+            &lt;div class="space-y-2"&gt;
+              &lt;div class="font-medium text-text-primary px-4"&gt;{t(locale, `nav.${item.key}`)}&lt;/div&gt;
+              {item.items.map((subItem: any) =&gt; (
+                &lt;a href={subItem.disabled ? '#' : getLocalizedPath(subItem.href, locale)} class={`block px-4 py-2 text-text-secondary ${subItem.disabled ? 'opacity-50' : 'hover:text-brand-primary'}`}&gt;
+                  {t(locale, `nav.${subItem.key}`)}
+                &lt;/a&gt;
+              ))}
+            &lt;/div&gt;
+          ) : (
+            &lt;a href={getLocalizedPath(item.href, locale)} class="px-4 py-2 text-text-secondary hover:text-brand-primary font-medium"&gt;
+              {t(locale, `nav.${item.key}`)}
+            &lt;/a&gt;
+          )
+        ))}
+        
+        &lt;div class="border-t border-gray-100 pt-4 mt-2 space-y-4 px-4"&gt;
+          &lt;a href={navigation.ctaLinks.login} class="block text-text-secondary font-medium"&gt;
+            {t(locale, 'nav.login')}
+          &lt;/a&gt;
+          &lt;a href={navigation.ctaLinks.demo} class="btn-primary w-full justify-center"&gt;
+            {t(locale, 'nav.demo')}
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class="h-20"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuBtn?.addEventListener('click', () =&gt; {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  const header = document.getElementById('main-header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () =&gt; {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll &gt; 100) {
+      header?.classList.add('shadow-soft');
+    } else {
+      header?.classList.remove('shadow-soft');
+    }
+    
+    lastScroll = currentScroll;
+  });
+&lt;/script&gt;
