@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Admin Login" noIndex={true}>
+  <section class="min-h-screen flex items-center justify-center bg-surface-secondary">
+    <div class="max-w-md w-full mx-4">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-text-primary">Admin Panel</h1>
+        <p class="text-text-secondary">Ingresa tus credenciales</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-soft-lg p-8">
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label for="email" class="label">Email</label>
+            <input type="email" id="email" name="email" required class="input" />
+          </div>
+          <div>
+            <label for="password" class="label">Password</label>
+            <input type="password" id="password" name="password" required class="input" />
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center">Ingresar</button>
+          <div id="error-message" class="hidden text-center text-sm text-error"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('login-form');
+  const errorMessage = document.getElementById('error-message');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form as HTMLFormElement);
+    
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
+      
+      if (response.ok) {
+        window.location.href = '/admin/dashboard';
+      } else {
+        errorMessage!.textContent = 'Credenciales inválidas';
+        errorMessage!.classList.remove('hidden');
+      }
+    } catch (error) {
+      errorMessage!.textContent = 'Error de conexión';
+      errorMessage!.classList.remove('hidden');
+    }
+  });
+</script>

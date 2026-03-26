@@ -1,0 +1,69 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getLocaleFromPath, type Locale } from '@/lib/i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname) as Locale;
+
+const content = {
+  es: {
+    title: 'Política de Privacidad',
+    description: 'Política de privacidad de Block-Builders Tech',
+    lastUpdate: 'Última actualización: Enero 2026',
+    intro: 'En Block-Builders Tech nos comprometemos a proteger su privacidad. Esta política describe cómo recopilamos, usamos y protegemos su información personal.',
+    sections: [
+      { title: 'Información que Recopilamos', content: 'Recopilamos información que usted nos proporciona directamente, como nombre, email, empresa e industria al registrarse o contactarnos. También recopilamos datos de uso de la plataforma para mejorar nuestros servicios.' },
+      { title: 'Uso de la Información', content: 'Utilizamos su información para: proporcionar y mejorar nuestros servicios, comunicarnos con usted, enviar actualizaciones relevantes, y cumplir con obligaciones legales.' },
+      { title: 'Seguridad de Datos', content: 'Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos, incluyendo encriptación TLS 1.3 en tránsito y AES-256 en reposo.' },
+      { title: 'Sus Derechos', content: 'Conforme a la Ley 25.326, usted tiene derecho a acceder, rectificar y suprimir sus datos personales. Para ejercer estos derechos, contáctenos a privacy@block-builders.tech.' },
+      { title: 'Contacto', content: 'Para consultas sobre privacidad: privacy@block-builders.tech' }
+    ]
+  },
+  en: {
+    title: 'Privacy Policy',
+    description: 'Block-Builders Tech privacy policy',
+    lastUpdate: 'Last updated: January 2026',
+    intro: 'At Block-Builders Tech we are committed to protecting your privacy. This policy describes how we collect, use and protect your personal information.',
+    sections: [
+      { title: 'Information We Collect', content: 'We collect information you provide directly, such as name, email, company and industry when registering or contacting us. We also collect platform usage data to improve our services.' },
+      { title: 'Use of Information', content: 'We use your information to: provide and improve our services, communicate with you, send relevant updates, and comply with legal obligations.' },
+      { title: 'Data Security', content: 'We implement technical and organizational security measures to protect your data, including TLS 1.3 encryption in transit and AES-256 at rest.' },
+      { title: 'Your Rights', content: 'Under Law 25.326, you have the right to access, rectify and delete your personal data. To exercise these rights, contact us at privacy@block-builders.tech.' },
+      { title: 'Contact', content: 'For privacy inquiries: privacy@block-builders.tech' }
+    ]
+  },
+  pt: {
+    title: 'Política de Privacidade',
+    description: 'Política de privacidade da Block-Builders Tech',
+    lastUpdate: 'Última atualização: Janeiro 2026',
+    intro: 'Na Block-Builders Tech estamos comprometidos em proteger sua privacidade. Esta política descreve como coletamos, usamos e protegemos suas informações pessoais.',
+    sections: [
+      { title: 'Informações que Coletamos', content: 'Coletamos informações que você nos fornece diretamente, como nome, email, empresa e indústria ao se registrar ou entrar em contato. Também coletamos dados de uso da plataforma para melhorar nossos serviços.' },
+      { title: 'Uso das Informações', content: 'Usamos suas informações para: fornecer e melhorar nossos serviços, comunicar com você, enviar atualizações relevantes e cumprir obrigações legais.' },
+      { title: 'Segurança de Dados', content: 'Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados, incluindo criptografia TLS 1.3 em trânsito e AES-256 em repouso.' },
+      { title: 'Seus Direitos', content: 'Conforme a Lei 25.326, você tem direito de acessar, retificar e excluir seus dados pessoais. Para exercer esses direitos, entre em contato em privacy@block-builders.tech.' },
+      { title: 'Contato', content: 'Para consultas sobre privacidade: privacy@block-builders.tech' }
+    ]
+  }
+};
+
+const t = content[locale];
+---
+
+<Layout title={t.title} description={t.description}>
+  <section class="section bg-white">
+    <div class="container-custom max-w-4xl">
+      <h1 class="text-display-md font-bold text-text-primary mb-4">{t.title}</h1>
+      <p class="text-text-tertiary mb-8">{t.lastUpdate}</p>
+      <p class="text-lg text-text-secondary mb-12">{t.intro}</p>
+      
+      <div class="space-y-12">
+        {t.sections.map((section) => (
+          <div>
+            <h2 class="text-xl font-bold text-text-primary mb-4">{section.title}</h2>
+            <p class="text-text-secondary leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

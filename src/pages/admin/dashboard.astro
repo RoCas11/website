@@ -1,0 +1,35 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Dashboard" noIndex={true}>
+  <section class="section bg-surface-secondary min-h-screen">
+    <div class="container-custom">
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="text-2xl font-bold text-text-primary">Dashboard</h1>
+        <button id="logout-btn" class="btn-ghost text-sm">Cerrar sesión</button>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="card"><h3 class="text-lg font-semibold mb-2">Blog Posts</h3><p class="text-3xl font-bold text-brand-primary">0</p></div>
+        <div class="card"><h3 class="text-lg font-semibold mb-2">Clientes</h3><p class="text-3xl font-bold text-brand-primary">6</p></div>
+        <div class="card"><h3 class="text-lg font-semibold mb-2">Videos</h3><p class="text-3xl font-bold text-brand-primary">0</p></div>
+      </div>
+      
+      <div class="card">
+        <h2 class="text-xl font-bold mb-4">Acciones Rápidas</h2>
+        <div class="flex gap-4">
+          <a href="/admin/blog/new" class="btn-primary">Nuevo Post</a>
+          <a href="/admin/clients" class="btn-secondary">Gestionar Clientes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.getElementById('logout-btn')?.addEventListener('click', () => {
+    document.cookie = 'bb_admin_session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    window.location.href = '/admin';
+  });
+</script>
