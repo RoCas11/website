@@ -1,0 +1,152 @@
+---
+import { type Locale } from '@/lib/i18n';
+import settings from '@content/config/settings.json';
+import navigation from '@content/config/navigation.json';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    label: 'Contacto', title: '¿Listo para empezar?', subtitle: 'Agenda una demo personalizada o envíanos tus consultas.',
+    demo: { title: 'Agenda una demo', description: 'Sesión de 30 minutos donde te mostramos la plataforma adaptada a tu industria.', cta: 'Agendar ahora', benefits: ['Demo personalizada', 'Sin compromiso', 'Respuestas inmediatas'] },
+    form: { title: 'Envíanos un mensaje', name: 'Nombre', lastName: 'Apellido', email: 'Email corporativo', company: 'Empresa', industry: 'Industria', message: '¿En qué podemos ayudarte?', submit: 'Enviar mensaje', sending: 'Enviando...', success: '¡Mensaje enviado! Te contactaremos pronto.', error: 'Error al enviar. Intenta nuevamente.', industries: ['Oil & Gas', 'Biorremediación', 'Logística', 'Manufactura', 'Construcción', 'Salud', 'Legal', 'Software', 'Otra'] },
+    info: { email: 'Email', location: 'Ubicación' }
+  },
+  en: {
+    label: 'Contact', title: 'Ready to get started?', subtitle: 'Schedule a personalized demo or send us your questions.',
+    demo: { title: 'Book a demo', description: '30-minute session where we show you the platform adapted to your industry.', cta: 'Book now', benefits: ['Personalized demo', 'No commitment', 'Immediate answers'] },
+    form: { title: 'Send us a message', name: 'First name', lastName: 'Last name', email: 'Corporate email', company: 'Company', industry: 'Industry', message: 'How can we help you?', submit: 'Send message', sending: 'Sending...', success: 'Message sent! We will contact you soon.', error: 'Error sending. Please try again.', industries: ['Oil & Gas', 'Bioremediation', 'Logistics', 'Manufacturing', 'Construction', 'Healthcare', 'Legal', 'Software', 'Other'] },
+    info: { email: 'Email', location: 'Location' }
+  },
+  pt: {
+    label: 'Contato', title: 'Pronto para começar?', subtitle: 'Agende uma demo personalizada ou envie-nos suas dúvidas.',
+    demo: { title: 'Agende uma demo', description: 'Sessão de 30 minutos onde mostramos a plataforma adaptada à sua indústria.', cta: 'Agendar agora', benefits: ['Demo personalizada', 'Sem compromisso', 'Respostas imediatas'] },
+    form: { title: 'Envie-nos uma mensagem', name: 'Nome', lastName: 'Sobrenome', email: 'Email corporativo', company: 'Empresa', industry: 'Indústria', message: 'Como podemos ajudá-lo?', submit: 'Enviar mensagem', sending: 'Enviando...', success: 'Mensagem enviada! Entraremos em contato em breve.', error: 'Erro ao enviar. Tente novamente.', industries: ['Oil & Gas', 'Biorremediação', 'Logística', 'Manufatura', 'Construção', 'Saúde', 'Legal', 'Software', 'Outra'] },
+    info: { email: 'Email', location: 'Localização' }
+  }
+};
+
+const t = content[locale];
+const webhookUrl = settings.contact.webhookUrl;
+---
+
+<section class="section bg-gradient-brand text-white" id="contacto">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="badge-white mb-4">{t.label}</span>
+      <h2 class="text-display-md font-bold text-white mb-4">{t.title}</h2>
+      <p class="text-lg text-white/80 max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="space-y-8">
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+          <h3 class="text-2xl font-bold text-white mb-4">{t.demo.title}</h3>
+          <p class="text-white/80 mb-6">{t.demo.description}</p>
+          <ul class="space-y-3 mb-8">
+            {t.demo.benefits.map((benefit) => (
+              <li class="flex items-center gap-3 text-white/90">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                {benefit}
+              </li>
+            ))}
+          </ul>
+          <a href={navigation.ctaLinks.demo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 bg-white text-brand-primary font-semibold rounded-xl hover:shadow-brand-lg hover:-translate-y-0.5 transition-all">
+            {t.demo.cta}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          </a>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            </div>
+            <div>
+              <p class="text-sm text-white/60">{t.info.email}</p>
+              <a href={`mailto:${settings.contact.email}`} class="text-white font-semibold hover:underline">{settings.contact.email}</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <div>
+              <p class="text-sm text-white/60">{t.info.location}</p>
+              <p class="text-white font-semibold">{settings.contact.location}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-3xl p-8 shadow-2xl">
+        <h3 class="text-xl font-bold text-text-primary mb-6">{t.form.title}</h3>
+        <form id="contact-form" class="space-y-5" data-webhook={webhookUrl}>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div><label for="nombre" class="label">{t.form.name}</label><input type="text" id="nombre" name="nombre" required class="input" /></div>
+            <div><label for="apellido" class="label">{t.form.lastName}</label><input type="text" id="apellido" name="apellido" required class="input" /></div>
+          </div>
+          <div><label for="email" class="label">{t.form.email}</label><input type="email" id="email" name="email" required class="input" /></div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div><label for="empresa" class="label">{t.form.company}</label><input type="text" id="empresa" name="empresa" required class="input" /></div>
+            <div>
+              <label for="industria" class="label">{t.form.industry}</label>
+              <select id="industria" name="industria" required class="select">
+                <option value="">Seleccionar...</option>
+                {t.form.industries.map((ind) => (<option value={ind}>{ind}</option>))}
+              </select>
+            </div>
+          </div>
+          <div><label for="mensaje" class="label">{t.form.message}</label><textarea id="mensaje" name="mensaje" rows="4" required class="input resize-none"></textarea></div>
+          <button type="submit" class="btn-primary w-full justify-center" id="submit-btn"><span id="submit-text">{t.form.submit}</span><span id="submit-loading" class="hidden">{t.form.sending}</span></button>
+          <div id="form-message" class="hidden text-center py-3 rounded-xl text-sm font-medium"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn');
+  const submitText = document.getElementById('submit-text');
+  const submitLoading = document.getElementById('submit-loading');
+  const formMessage = document.getElementById('form-message');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const webhookUrl = form.dataset.webhook;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    submitText?.classList.add('hidden');
+    submitLoading?.classList.remove('hidden');
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+    
+    try {
+      const response = await fetch(webhookUrl || '', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, source: 'website', timestamp: new Date().toISOString() })
+      });
+      
+      if (response.ok) {
+        formMessage!.textContent = 'Mensaje enviado!';
+        formMessage!.className = 'text-center py-3 rounded-xl text-sm font-medium bg-green-100 text-green-800';
+        form.reset();
+      } else {
+        throw new Error('Response not ok');
+      }
+    } catch (error) {
+      formMessage!.textContent = 'Error al enviar';
+      formMessage!.className = 'text-center py-3 rounded-xl text-sm font-medium bg-red-100 text-red-800';
+    } finally {
+      submitText?.classList.remove('hidden');
+      submitLoading?.classList.add('hidden');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+      formMessage?.classList.remove('hidden');
+      setTimeout(() => formMessage?.classList.add('hidden'), 5000);
+    }
+  });
+</script>
